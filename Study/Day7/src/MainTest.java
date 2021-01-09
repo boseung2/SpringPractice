@@ -90,12 +90,12 @@ public class MainTest {
         }
 
 
-        //FLUSH인지확인하기
-        boolean isFlush = true;
-        int firstKind = cArr[0].kind;
+        //FLUSH인지확인하기 - false로 먼저 초기화해줬는데 true로 하는거랑비교해봐야함
+        boolean isNotFlush = false;
+        int firstCardKind = cArr[0].kind;
         for (int i = 1; i < cArr.length; i++) {
-            if (cArr[i].kind != firstKind) {
-                isFlush = false;
+            if (cArr[i].kind != firstCardKind) {
+                isNotFlush = true;
                 break;
             }
         }
@@ -108,7 +108,7 @@ public class MainTest {
         if (isThreeCard && pairCount == 1) {
             return "FULL HOUSE";
         }
-        if (isFlush) {
+        if (!isNotFlush) {
             return "FLUSH";
         }
         if (isStraight) {

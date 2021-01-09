@@ -5,48 +5,34 @@ import static org.junit.Assert.*;
 public class MissionTest2 {
     int bingoCnt(int[][] arr) {
         int bingoCnt = 0;
-        boolean isZeroExist;
+        boolean isGaroZeroExist;
+        boolean isSeroZeroExist;
+        boolean isCrossZeroExist = false;
+        boolean isCrossZeroExist2 = false;
 
-        for(int i=0; i<arr.length; i++){
-            //가로가 빙고인지 검사
-            isZeroExist = false;
-            for (int j=0; j<arr[i].length; j++) {
-                if(arr[i][j] == 0){
-                    isZeroExist = true;
+        //가로,세로,대각선2개 빙고인지 검사
+        for (int i = 0; i < arr.length; i++) {
+            isGaroZeroExist = false;
+            isSeroZeroExist = false;
+            for (int j = 0; j < arr[i].length; j++) {
+                if (arr[i][j] == 0) {
+                    isGaroZeroExist = true;
+                }
+                if (arr[j][i] == 0) {
+                    isSeroZeroExist = true;
                 }
             }
-            if(!isZeroExist) bingoCnt++;
-
-            //세로가 빙고인지 검사
-            isZeroExist = false;
-            for (int j=0; j<arr[i].length; j++) {
-                if(arr[j][i] == 0) {
-                    isZeroExist = true;
-                }
+            if (arr[i][i] == 0) {
+                isCrossZeroExist = true;
             }
-            if(!isZeroExist) bingoCnt++;
-        }
-
-        //대각선(\)이 빙고인지 검사
-        isZeroExist = false;
-        for(int i=0; i<arr.length; i++) {
-            if(arr[i][i] == 0) {
-                isZeroExist = true;
+            if (arr[i][4 - i] == 0) {
+                isCrossZeroExist2 = true;
             }
+            if (!isGaroZeroExist) bingoCnt++;
+            if (!isSeroZeroExist) bingoCnt++;
         }
-        if(!isZeroExist) bingoCnt++;
-
-
-        //대각선(/)이 빙고인지 검사
-        isZeroExist = false;
-        for(int i=0; i<arr.length; i++) {
-            if(arr[i][4-i] == 0) {
-                isZeroExist = true;
-            }
-        }
-        if(!isZeroExist) bingoCnt++;
-
-
+        if (!isCrossZeroExist) bingoCnt++;
+        if (!isCrossZeroExist2) bingoCnt++;
         return bingoCnt;
     }
 
@@ -73,7 +59,4 @@ public class MissionTest2 {
         };
         assertTrue(bingoCnt(arr) == 12);
     }
-
-
-
 }

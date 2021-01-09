@@ -3,23 +3,32 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class MissionTest1 {
-        int mid(int x, int y, int z) {
-            if( x <= y) {
-                if( z >= y) {
-                    return y;
-                }else if(z <= x){
-                    return x;
-                }else {
-                    return z;
-                }
-            }else if( z >= x) {
-                return x;
-            }else if( z <= y) {
-                return y;
-            }else {
-                return z;
-            }
+//        int mid(int x, int y, int z) {
+//            if( x <= y) {
+//                if( z >= y) {
+//                    return y;
+//                }else if(z <= x){
+//                    return x;
+//                }else {
+//                    return z;
+//                }
+//            }else if( z >= x) {
+//                return x;
+//            }else if( z <= y) {
+//                return y;
+//            }else {
+//                return z;
+//            }
+//        }
+    int mid(int x, int y, int z) {
+        if( (x <= y && y <= z) || (z <= y && y <= x)) {
+            return y;
+        }else if( (x <= z && z <= y) || (y <= z && z <= x)) {
+            return z;
+        }else {
+            return x;
         }
+    }
 
         @Test public void midTest1() {
             assertTrue(mid(1, 2, 3) ==2 );
