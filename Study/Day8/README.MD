@@ -7,7 +7,7 @@
 * layout - blocklevel inlinelevel maxsize minsize (css레이아웃잡기가 어렵다 ㅠ)
 div, li, table, li, ul 블럭레벨
 
-````html
+````css
 li {
     display: inline;
 }
