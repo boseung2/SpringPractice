@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class MyVector {
-    Object[] objArr;
+    Object[] objArr = new Object[0]; // 초기화를 안해주면 null이 들어가는데 이러면 예외가 날 확률이 생기므로 0개짜리 배열로 선언해준다.
     int size;
     int capacity;
 
@@ -37,24 +37,28 @@ public class MyVector {
     }
 
     int indexOf(Object obj) {
-        for(int i=0; i<size -1; i++) {
-            if(objArr[i] == obj){
-                return i;
+        final int SIZE = size();
+        int index = -1;
+        for (int i = 0; i < SIZE; i++) {
+            if(objArr[i]==obj || objArr[i].equals(obj)) {
+                index = i;
             }
         }
-        return -1;
+        return index;
     }
+
 
     void setCapacity(int capacity) {
         if(this.capacity < capacity) {
             this.capacity = capacity;
-            Object[] tmpArr = new Object[capacity];
+            Object[] tmpArr = new Object[capacity * 2];
             tmpArr = Arrays.copyOf(objArr, size);
+            objArr = tmpArr;
         }
     }
 
     void ensureCapacity(int minCapacity) {
-        if(size < minCapacity) {
+        if(capacity < minCapacity) {
             setCapacity(minCapacity);
         }
     }
@@ -75,4 +79,8 @@ public class MyVector {
         size--;
         return removedData;
     }
+
+
+
+
 }

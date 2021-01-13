@@ -89,17 +89,30 @@ public class MainTest {
             isStraight = false;
         }
 
+        // true,false로 isStraight판별하기보단 카운트 해서 판별하는게 더 간결함
+        //int straightCnt = 0;
+        //for (int i = 0; i < cntArr.length; i++) {
+        //if(cntArr[i]>1)
+        //   break;
+        //if(cntArr[i]==1) {
+        //  for (int j = i+1; j <= i+4 && j < cntArr.length; j++) {
+        //       if(cntArr[j]==1)
+        //             straightCnt++;
+        //       }
+        //   }
+        //}
+        //isStraight = straightCnt==4;
+
 
         //FLUSH인지확인하기 - false로 먼저 초기화해줬는데 true로 하는거랑비교해봐야함
-        boolean isNotFlush = false;
+        boolean isFlush = true;
         int firstCardKind = cArr[0].kind;
         for (int i = 1; i < cArr.length; i++) {
             if (cArr[i].kind != firstCardKind) {
-                isNotFlush = true;
+                isFlush = false;
                 break;
             }
         }
-
 
         //먼저나온 변수가 더 우선순위 높게 return
         if (isFourCard) {
@@ -108,7 +121,7 @@ public class MainTest {
         if (isThreeCard && pairCount == 1) {
             return "FULL HOUSE";
         }
-        if (!isNotFlush) {
+        if (isFlush) {
             return "FLUSH";
         }
         if (isStraight) {
@@ -293,5 +306,6 @@ public class MainTest {
         };
         assertTrue(rankCheck(cArr).equals("2 PAIR"));
     }
+
 
 }

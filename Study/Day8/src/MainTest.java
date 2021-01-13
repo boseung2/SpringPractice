@@ -1,30 +1,7 @@
 import org.junit.Test;
-
-import java.util.Objects;
 import java.util.Vector;
 
 import static org.junit.Assert.*;
-
-class TestClass {
-    @Override
-    public String toString() {
-        return "test입니다";
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if(!(obj instanceof TestClass)) {
-            return false;
-        }
-        TestClass otherClass = (TestClass)obj;
-        return this.toString() == otherClass.toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.toString());
-    }
-}
 
 public class MainTest {
     @Test
@@ -35,10 +12,9 @@ public class MainTest {
         v.add(null);
         v.add("222");
         v.add(null);
-        v.add(new TestClass());
-        assertTrue(v.size() == 5);
+        assertTrue(v.size() == 4);
         assertTrue(v.lastIndexOf(null) == 3);
-        System.out.println(v.get(4));
+        System.out.println(v.get(3));
     }
 
     @Test
@@ -48,16 +24,15 @@ public class MainTest {
         for(int i=0; i<10; i++) {
             v.add(i + "번째 값");
         }
+        v.add(null);
         assertTrue(v.indexOf("4번째 값") == 4);
-        //assertTrue(v.indexOf(4번째 값) == 4);
+        System.out.println(v.indexOf(null));
+        assertTrue(v.indexOf(null) == 10);
     }
 
     @Test
     public void getTest() {
         Vector v = new Vector();
-
-        v.add(new TestClass());
-        assertTrue(v.get(0).equals(new TestClass()));
     }
 
     @Test
@@ -79,11 +54,11 @@ public class MainTest {
     @Test
     public void sizeTest() {
         Vector v = new Vector();
-        v.add(1);
-        v.add(2);
-        v.add(3);
-
-        assertTrue(v.size() == 3);
+        assertTrue(v.size()==0);
+        v.add(null);
+        assertTrue(v.size()==1);
+        v.remove(0);
+        assertTrue(v.size()==0);
     }
 
     @Test
@@ -100,6 +75,47 @@ public class MainTest {
         assertTrue(v.capacity() == 20);
     }
 
+    @Test
+    public void indexOfTest2(){
+
+        MyVector v = new MyVector(100);
+
+        v.add("abc");
+
+        v.add("123");
+
+        v.add(null);
+
+        v.add("zzz");
+
+        System.out.println(v.indexOf("abc"));
+        assertTrue(v.indexOf("abc")==0);
+//        System.out.println(v.indexOf("xxx"));
+//        assertTrue(v.indexOf("xxx")==-1);
+        System.out.println(v.indexOf(null));
+        assertTrue(v.indexOf(null)==2);
+
+    }
+
+    @Test
+    public void indexOfText3() {
+        MyVector v = new MyVector();
+        v.add(1);
+        v.add(1);
+        v.add(1);
+        v.add(null);
+        assertTrue(v.indexOf(null) == 3);
+    }
+
+    @Test
+    public void indexOfText4() {
+        MyVector v = new MyVector();
+        v.add("1");
+        v.add("1");
+        v.add("1");
+        v.add(null);
+        assertTrue(v.indexOf(null) == 3);
+    }
 
 
 }
