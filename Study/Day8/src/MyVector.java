@@ -40,12 +40,20 @@ public class MyVector {
         final int SIZE = size();
         int index = -1;
         for (int i = 0; i < SIZE; i++) {
-            if(objArr[i]==obj || objArr[i].equals(obj)) {
-                index = i;
+            if(obj==null) {
+                if(objArr[i]==obj) {
+                    return i;
+                }
+            } else if(obj.equals(objArr[i])){
+                return i;
             }
+//            if(objArr[i]==obj || objArr[i].equals(obj)) {
+//                index = i;
+//            } //이거 앞에조건이 왜 nullPointerException이죠?
         }
         return index;
     }
+
 
 
     void setCapacity(int capacity) {
