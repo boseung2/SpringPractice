@@ -1,0 +1,63 @@
+package com.codechobo;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/Dice")
+public class Dice extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html;charset=UTF-8");
+		
+		int random1 = (int) (Math.random() * 6 + 1);
+		int random2 = (int) (Math.random() * 6 + 1);
+		int sum = random1 + random2;
+		
+		out.println("<!DOCTYPE html>");
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<style>");
+		out.println("button {");
+		out.println("  background-color: #f44336;");
+		out.println("  color: white;");
+		out.println("  padding: 15px 25px;");
+		out.println("  text-align: center;");
+		out.println("  text-decoration: none;");
+		out.println("  display: inline-block;");
+		out.println("}");
+		out.println("</style>");
+		out.println("</head>");
+		out.println("<body>");
+		for(int i=1; i<=6; i++) {
+			for(int j=1; j<=6; j++) {
+				if(random1 == i && random2 == j) {
+					out.println("<img src=\"/image/dice" + random1 + ".jpg\" alt=\"dice\">");
+					out.println("<img src=\"/image/dice" + random2 + ".jpg\" alt=\"dice\"><br>");
+				}
+			}
+		}
+		out.println("<button onclick=\"document.location='Dice'\">Throw dice</button>");
+		out.println(sum);
+		
+		
+		
+		out.println("</body>");	
+		out.println("</html>");
+		
+		
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

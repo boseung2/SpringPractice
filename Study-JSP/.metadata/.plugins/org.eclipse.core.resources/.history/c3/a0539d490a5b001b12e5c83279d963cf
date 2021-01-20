@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="/loginAction" method=get>
+	id: <input name="id" type=text value="" placeholder="your id."><br>
+	pwd: <input name="pwd" type=password value="" placeholder="your password"><br>
+		<input type=submit value="OK">
+</form>
+</body>
+</html>

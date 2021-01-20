@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<img src="/image/dice1.jpg" alt="dice">
+<img src="/image/dice1.jpg" alt="dice">
+<button onclick="http://localhost/Dice\">주사위 굴리기</button>
+</body>
+</html>
