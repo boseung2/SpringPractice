@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+Cookie[] cookies = request.getCookies();
+String rememberedId="";
+if(cookies.length > 0){
+	rememberedId = cookies[0].getValue();
+}
+%>
+<form action="/LoginAction2" method=get>
+ID<input type="text" name="id" size=10 value=><br>
+PWD<input type="password" name="pwd" size=10>
+<br>
+<input type="checkbox" name="isRemember" value="yes">ID기억
+<br>
+<input type="submit" value="send">
+</form>
+</body>
+</html>
