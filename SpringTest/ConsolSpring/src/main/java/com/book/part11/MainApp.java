@@ -1,0 +1,15 @@
+package com.book.part11;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import com.book.part11.Board;
+
+public class MainApp {
+	public static void main(String[] args) {
+		ApplicationContext ac = new GenericXmlApplicationContext("spring/springcontext11.xml");
+		
+		Board board = ac.getBean("board", Board.class);
+		board.boardWrite();
+	}
+}
