@@ -60,6 +60,7 @@ public class BoardServiceTests {
 			
 		}
 		
+		/*
 		@Test
 		public void testUpdate() {
 			BoardVO board = service.get(33L);
@@ -71,4 +72,5 @@ public class BoardServiceTests {
 			board.setTitle("제목 수정합니다.");
 			log.info("MODIFY RESULT: " + service.modify(board));
 		}
+		*/
 }

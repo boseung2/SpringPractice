@@ -1,10 +1,13 @@
 package org.zerock.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import lombok.Setter;
@@ -62,7 +65,7 @@ public class BoardMapperTests {
 	public void testDelete() {
 		log.info("DELETE COUNT: " + mapper.delete(40L));
 	}
-	*/
+	
 	
 	@Test
 	public void testUpdate() {
@@ -78,4 +81,33 @@ public class BoardMapperTests {
 		
 	}
 	
+	
+	@Test
+	public void testPaging() {
+		Criteria cri = new Criteria();
+		List<BoardVO> list = mapper.getListWithPaging(cri);
+		list.forEach(board -> log.info(board));
+	}
+	
+	
+	@Test
+	public void testPaging2() {
+		Criteria cri = new Criteria();
+		cri.setPageNum(3);
+		cri.setAmount(10);
+		List<BoardVO> list = mapper.getListWithPaging(cri);
+		list.forEach(board -> log.info(board));
+	}
+	
+	*/
+	
+	@Test
+	public void testSearch() {
+		Criteria cri = new Criteria();
+		cri.setKeyword("»õ·Î");
+		cri.setType("TC");
+
+		List<BoardVO> list = mapper.getListWithPaging(cri);
+		list.forEach(board -> log.info(board));
+	}
 }

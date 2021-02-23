@@ -11,10 +11,10 @@
     <form action="/web/loginAction" method=post>
         <h1>로그인</h1>
         <b>ID</b>
-        <input type="text" placeholder="Enter ID" name="id" size="10" value='${rememberedId}'>
+        <input type="text" placeholder="Enter ID" name="id" size="10" value='${cookie.id.value}'>
         <b>Password</b>
         <input type="password" placeholder="Enter Password" name="pwd" size="20">
-        <input type="checkbox" name="remember" value="yes" ${checked}>Remember ID
+        <input type="checkbox" name="remember" value="yes" ${cookie.id == null ? "" : "checked"}>Remember ID
         <button type="submit">Login</button>
         <p>계정이 없으세요? <a href="register.jsp">회원가입하기</a></p>
     </form>

@@ -151,37 +151,45 @@ public class HomeController {
 	
 	
 	@RequestMapping("/loginForm")
-	public void loginForm(HttpServletRequest request, Model model) {
+	public void loginForm() {
 		
-		String rememberedId = getValueFromIdCookie(request);
-		
-		model.addAttribute("rememberedId", rememberedId);
-		model.addAttribute("checked", rememberedId.equals("") ? "" : "checked");
 	}
 	
 	
 	@RequestMapping("/loginAction")
-	public String loginAction(UserInfo user, 
+	public String loginAction(UserInfo user, HttpSession session, 
 			HttpServletRequest request, HttpServletResponse response) {
-		
-		// 쿠키 관련
-        if ("yes".equals(user.getRemember())) {
+
+		if ("yes".equals(user.getRemember())) {
             response.addCookie(new Cookie("id", user.getId()));
         }else {
             deleteIdCookie(request, response);
         }
+		
+		// id, pwd 틀리면
+        if (!checkId(user)) return "redirect:loginForm";
         
-        // 세션 관련
-        String uri = "";
-        if (checkId(user)) {
-            HttpSession session = request.getSession(true);
-            session.setAttribute("id", user.getId());
-            uri = "home";
-        } else {
-        	uri = "loginForm";
-        }
-   
-		return "redirect:" + uri;
+        // id, pwd 맞으면
+        session.setAttribute("id", user.getId());
+		return "redirect:home";
+	}
+	
+	@RequestMapping("/logoutAction")
+	public String logoutAction(HttpServletRequest request) {
+		
+		// 세션 관련
+		HttpSession session = request.getSession(true);
+		session.removeAttribute("id");
+		
+		return "redirect:loginForm";
+	}
+	
+	@RequestMapping("/board")
+	public String board(HttpSession session) {
+		if(session.getAttribute("id") != null) {
+			 
+		}
+		return 
 	}
 	
 }
